@@ -260,3 +260,6 @@ MonoBehaviour:
     m_Bits: 64
   sprintMultiplier: 1.7
   crouchFactor: 0.5
+  collectedWeapons:
+  - {fileID: 7953792800536685907, guid: 989fb40d5f2cea64192a6a3dffe29fe0, type: 3}
+  - {fileID: 5001406518908140224, guid: 6f45b697d0a287748a42cb992105357d, type: 3}

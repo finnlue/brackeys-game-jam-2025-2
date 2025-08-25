@@ -31,17 +31,23 @@ public class PlayerController : MonoBehaviour
     public float crouchFactor = 0.5f;
     private bool canGetUp = true;
 
+
+    [Header("Primary Fire")]
+    private int currentWeaponID = 0;
+    public BaseWeapon[] collectedWeapons;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        capsuleCollider =  GetComponentInChildren<CapsuleCollider>();
+        capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        playerHeight = transform.localScale.y * 2;
     }
 
     void Update()
     {
-        onGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
-        canGetUp = !Physics.Raycast(transform.position, Vector3.up, playerHeight * 0.5f + 0.2f, groundMask);
+        onGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + playerHeight * 0.05f, groundMask);
+        canGetUp = !Physics.Raycast(transform.position, Vector3.up, playerHeight * 0.5f + playerHeight * 0.1f, groundMask);
         rb.linearDamping = airDrag;
         if (onGround)
         {
@@ -49,12 +55,6 @@ public class PlayerController : MonoBehaviour
         }
         SpeedControl();
     }
-
-    public void Fire()
-    {
-        Debug.Log("Fire at will");
-    }
-
 
     public void getMoveDirection(Vector2 movementInput)
     {
@@ -105,17 +105,36 @@ public class PlayerController : MonoBehaviour
 
     public void Crouch()
     {
-        camerPos.position = new Vector3(camerPos.position.x, camerPos.position.y - playerHeight * crouchFactor, camerPos.position.z);
+        //camerPos.position = new Vector3(camerPos.position.x, camerPos.position.y * crouchFactor, camerPos.position.z);
         capsuleCollider.height *= crouchFactor;
-        capsuleCollider.center = new Vector3(capsuleCollider.center.x, playerHeight * 0.5f - crouchFactor, capsuleCollider.center.z);
+        capsuleCollider.center = new Vector3(capsuleCollider.center.x, playerHeight * 0.5f * crouchFactor, capsuleCollider.center.z);
     }
     public void StandUp()
     {
         if (canGetUp)
         {
-            camerPos.position = new Vector3(camerPos.position.x, camerPos.position.y + playerHeight * crouchFactor, camerPos.position.z);
+            // camerPos.position = new Vector3(camerPos.position.x, camerPos.position.y / crouchFactor, camerPos.position.z);
             capsuleCollider.center = new Vector3(capsuleCollider.center.x, 0, capsuleCollider.center.z);
             capsuleCollider.height /= crouchFactor;
         }
+    }
+
+
+    public void PrimaryFire()
+    {
+        collectedWeapons[currentWeaponID].PrimaryFire(camerPos.position, orientation.forward);
+    }
+
+    public void NextWeapon()
+    {
+        currentWeaponID += 1;
+        if (currentWeaponID > collectedWeapons.Length - 1)
+            currentWeaponID = 0; 
+    }
+    public void prevoiusWeapon()
+    {
+        currentWeaponID -= 1;
+        if (currentWeaponID < 0)
+            currentWeaponID = collectedWeapons.Length -1;
     }
 }

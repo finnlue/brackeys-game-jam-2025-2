@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 3
   tags:
   - Zombie
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

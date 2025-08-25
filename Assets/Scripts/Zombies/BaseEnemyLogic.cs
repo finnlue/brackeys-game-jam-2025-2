@@ -10,6 +10,7 @@ public class BaseEnemyLogic : MonoBehaviour
     public float range = 20f;
     public float minDistance = 0.5f;
     public NavMeshAgent navMeshAgent;
+    SpriteRenderer sprite;
 
 
     public int health;
@@ -19,6 +20,7 @@ public class BaseEnemyLogic : MonoBehaviour
     protected virtual void Start()
     {
         GameObject playerObj = GameObject.FindWithTag("Player");
+        sprite = GetComponent<SpriteRenderer>();
         player = playerObj.transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
 
@@ -27,6 +29,9 @@ public class BaseEnemyLogic : MonoBehaviour
 
     private void Update()
     {
+        transform.LookAt(player);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+
         distance = Vector3.Distance(this.transform.position, player.position);
 
         if(distance < range)

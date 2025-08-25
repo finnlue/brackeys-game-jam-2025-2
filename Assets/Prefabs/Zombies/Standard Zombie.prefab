@@ -15,7 +15,13 @@ GameObject:
   - component: {fileID: 3926796732383624812}
   - component: {fileID: 7636803505713135935}
   - component: {fileID: 8180005436447569752}
-  m_Layer: 0
+  - component: {fileID: 294152699720202031}
+  - component: {fileID: 5375275643288482104}
+  - component: {fileID: 8426014932971947085}
+  - component: {fileID: 4480851278940360743}
+  - component: {fileID: 5440200393408502793}
+  - component: {fileID: 4129868817812396740}
+  m_Layer: 7
   m_Name: Standard Zombie
   m_TagString: Zombie
   m_Icon: {fileID: 0}

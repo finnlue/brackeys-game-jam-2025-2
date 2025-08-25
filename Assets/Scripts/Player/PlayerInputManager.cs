@@ -99,7 +99,7 @@ public class PlayerInputManager : MonoBehaviour
 
     void Fire(InputAction.CallbackContext callback)
     {
-        playerController.Fire();
+        playerController.PrimaryFire();
     }
 
     void Interact(InputAction.CallbackContext callback)
@@ -122,11 +122,11 @@ public class PlayerInputManager : MonoBehaviour
     }
     void Previous(InputAction.CallbackContext callback)
     {
-        Debug.Log("Previous");
+        playerController.prevoiusWeapon();
     }
     void Next(InputAction.CallbackContext callback)
     {
-        Debug.Log("Next");
+        playerController.NextWeapon();
     }
     void Sprint(InputAction.CallbackContext callback)
     {

@@ -36,7 +36,7 @@ public class BaseEnemyLogic : MonoBehaviour
 
         distance = Vector3.Distance(this.transform.position, player.position);
 
-        if(distance < range)
+        if (distance < range)
         {
             navMeshAgent.SetDestination(player.position);
         } 
@@ -54,5 +54,18 @@ public class BaseEnemyLogic : MonoBehaviour
     protected void ApplyToAgent()
     {
         navMeshAgent.speed = speed;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        Debug.Log(gameObject.name +" took " + damage + "damage. HP : "+ health);
+        if (health <= 0)
+            Die();
+
+    }
+    void Die()
+    {
+        Debug.Log("Killed" + gameObject.name);
     }
 }

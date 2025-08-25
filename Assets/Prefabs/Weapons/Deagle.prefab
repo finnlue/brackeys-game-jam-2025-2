@@ -46,12 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombieLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   spread: 0.5
   range: 40
   automatic: 0
   maxAmmo: 7
   ammoPerShot: 1
-  ammo: 7
+  ammo: 0
   primaryFireCooldown: 1
   damagePerHit: 40

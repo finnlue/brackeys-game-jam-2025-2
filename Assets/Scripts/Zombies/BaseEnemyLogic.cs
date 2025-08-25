@@ -11,6 +11,7 @@ public class BaseEnemyLogic : MonoBehaviour
     public float minDistance = 0.5f;
     public NavMeshAgent navMeshAgent;
     SpriteRenderer sprite;
+    Animator anim;
 
 
     public int health;
@@ -20,9 +21,10 @@ public class BaseEnemyLogic : MonoBehaviour
     protected virtual void Start()
     {
         GameObject playerObj = GameObject.FindWithTag("Player");
-        sprite = GetComponent<SpriteRenderer>();
         player = playerObj.transform;
+        sprite = GetComponent<SpriteRenderer>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
 
         navMeshAgent.stoppingDistance = minDistance;
     }
@@ -38,6 +40,15 @@ public class BaseEnemyLogic : MonoBehaviour
         {
             navMeshAgent.SetDestination(player.position);
         } 
+
+        if(navMeshAgent.velocity.magnitude > speed)
+        {
+            anim.SetInteger("Mode", 1);
+        } 
+        else
+        {
+            anim.SetInteger("Mode", 0);
+        }
     }
 
     protected void ApplyToAgent()

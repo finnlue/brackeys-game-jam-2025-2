@@ -39,9 +39,11 @@ public class BaseEnemyLogic : MonoBehaviour
         if (distance < range)
         {
             navMeshAgent.SetDestination(player.position);
-        } 
+        }
 
-        if(navMeshAgent.velocity.magnitude > speed)
+        Debug.Log(navMeshAgent.velocity.magnitude);
+
+        if(navMeshAgent.velocity.magnitude > 0.1f)
         {
             anim.SetInteger("Mode", 1);
         } 

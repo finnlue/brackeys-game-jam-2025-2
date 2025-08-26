@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20402c105484b7942bb8311db0abe157, type: 3}
+  m_Name: Deagle
+  m_EditorClassIdentifier: 
+  fireMode: 0
+  projectile: 0
+  scoped: 0
+  range: 40
+  spread: 1
+  spreadScaling: 0
+  magazineSize: 7
+  ammoInMagazine: 0
+  maxAmmo: 35
+  reserveAmmo: -5
+  reloadTime: 1.5
+  ammoPerShot: 1
+  fireCooldown: 1
+  damagePerHit: 40
+  animator: {fileID: 0}

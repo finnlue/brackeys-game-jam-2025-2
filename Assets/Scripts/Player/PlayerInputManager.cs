@@ -7,12 +7,16 @@ public class PlayerInputManager : MonoBehaviour
 {
 
     public InputSystem_Actions playerControls;
-    public PlayerController playerController;
+    public MovementController movementController;
+    public GunController gunController;
     public CameraControls cameraController;
+
+    public WeaponBluePrint test;
 
     private InputAction move;
     private InputAction look;
     private InputAction primaryFire;
+    private InputAction reload;
     private InputAction interact;
     private InputAction crouch;
     private InputAction jump;
@@ -25,6 +29,7 @@ public class PlayerInputManager : MonoBehaviour
     void Awake()
     {
         playerControls = new InputSystem_Actions();
+        movementController = GetComponent<MovementController>();
     }
 
     void OnEnable()
@@ -40,7 +45,12 @@ public class PlayerInputManager : MonoBehaviour
 
         primaryFire = playerControls.Player.Attack;
         primaryFire.Enable();
-        primaryFire.performed += Fire;
+        primaryFire.started += StartFire;
+        primaryFire.canceled += StopFire;
+
+        reload = playerControls.Player.Reload;
+        reload.Enable();
+        reload.performed += Reload;
 
         interact = playerControls.Player.Interact;
         interact.Enable();
@@ -82,13 +92,13 @@ public class PlayerInputManager : MonoBehaviour
     }
     void StopMove(InputAction.CallbackContext callback)
     {
-        playerController.getMoveDirection(Vector3.zero);
+        movementController.getMoveDirection(Vector3.zero);
     }
 
     void Move(InputAction.CallbackContext callback)
     {
         Vector2 movementDirection = callback.ReadValue<Vector2>();
-        playerController.getMoveDirection(movementDirection);
+        movementController.getMoveDirection(movementDirection);
     }
 
     void Look(InputAction.CallbackContext callback)
@@ -97,44 +107,53 @@ public class PlayerInputManager : MonoBehaviour
         cameraController.Look(lookDirection);
     }
 
-    void Fire(InputAction.CallbackContext callback)
+    void StartFire(InputAction.CallbackContext callback)
     {
-        playerController.PrimaryFire();
+        gunController.StartFire();
+    }
+    void StopFire(InputAction.CallbackContext callback)
+    {
+        gunController.StopFire();
+    }
+
+    void Reload(InputAction.CallbackContext callback)
+    {
+        StartCoroutine(gunController.Reload());
     }
 
     void Interact(InputAction.CallbackContext callback)
     {
-        Debug.Log("Interact");
+        gunController.PickUpWeapon(test);
     }
 
     void Crouch(InputAction.CallbackContext callback)
     {
-        playerController.Crouch();
+        movementController.Crouch();
     }
     
     void StandUp(InputAction.CallbackContext callback)
     {
-        playerController.StandUp();
+        movementController.StandUp();
     }
     void Jump(InputAction.CallbackContext callback)
     {
-        playerController.Jump();
+        movementController.Jump();
     }
     void Previous(InputAction.CallbackContext callback)
     {
-        playerController.prevoiusWeapon();
+        gunController.prevoiusWeapon();
     }
     void Next(InputAction.CallbackContext callback)
     {
-        playerController.NextWeapon();
+        gunController.NextWeapon();
     }
     void Sprint(InputAction.CallbackContext callback)
     {
-        playerController.Sprint();
+        movementController.Sprint();
     }
     void StopSprint(InputAction.CallbackContext callback)
     {
-        playerController.StopSprint();
+        movementController.StopSprint();
     }
     
 

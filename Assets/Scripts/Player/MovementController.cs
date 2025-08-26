@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class MovementController : MonoBehaviour
 {
-
+    [Header("Referrences")]
     public Transform orientation;
     public Transform camerPos;
     public Rigidbody rb;
     private CapsuleCollider capsuleCollider;
-
+    
     [Header("Movement")]
     public float movementSpeed = 7f;
     public float groundDrag = 5f;
@@ -31,17 +31,13 @@ public class PlayerController : MonoBehaviour
     public float crouchFactor = 0.5f;
     private bool canGetUp = true;
 
-
-    [Header("Primary Fire")]
-    private int currentWeaponID = 0;
-    public BaseWeapon[] collectedWeapons;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         playerHeight = transform.localScale.y * 2;
+        
     }
 
     void Update()
@@ -119,22 +115,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-    public void PrimaryFire()
-    {
-        collectedWeapons[currentWeaponID].PrimaryFire(camerPos.position, orientation.forward);
-    }
-
-    public void NextWeapon()
-    {
-        currentWeaponID += 1;
-        if (currentWeaponID > collectedWeapons.Length - 1)
-            currentWeaponID = 0; 
-    }
-    public void prevoiusWeapon()
-    {
-        currentWeaponID -= 1;
-        if (currentWeaponID < 0)
-            currentWeaponID = collectedWeapons.Length -1;
-    }
 }

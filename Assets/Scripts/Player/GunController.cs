@@ -18,20 +18,27 @@ public class GunController : MonoBehaviour
     private Vector3 cameraPosition;
     private Vector3 forwardVector;
 
+    private bool reloading;
+
     void Start()
     {
+        foreach (WeaponBluePrint weapon in availableWeapons)
+        {
+            weapon.ammoInMagazine = weapon.magazineSize;
+            weapon.reserveAmmo = weapon.maxAmmo;
+        }
         shootWeapon = GetComponentInChildren<ShootWeapon>();
         currentWeapon = availableWeapons[currentWeaponID];
 
         testUI.currentWeapon = currentWeapon;
-        currentWeapon.reserveAmmo = currentWeapon.maxAmmo;
+     
     }
 
     public void StartFire()
     {
         cameraPosition = movementController.camerPos.position;
         forwardVector = movementController.orientation.forward;
-        if (currentWeapon.ammoInMagazine <= 0)
+        if (currentWeapon.ammoInMagazine <= 0 && !reloading)
         {
             StartCoroutine(Reload());
             return;
@@ -52,10 +59,13 @@ public class GunController : MonoBehaviour
             yield break;
         }
         shootWeapon.canFire = false;
+        reloading = true;
         yield return new WaitForSeconds(currentWeapon.reloadTime);
-        currentWeapon.reserveAmmo -= currentWeapon.magazineSize - currentWeapon.ammoInMagazine;
-        currentWeapon.ammoInMagazine = currentWeapon.magazineSize;
+        int reloadAmmo = Mathf.Min(currentWeapon.reserveAmmo, currentWeapon.magazineSize - currentWeapon.ammoInMagazine);
+        currentWeapon.reserveAmmo -= reloadAmmo;
+        currentWeapon.ammoInMagazine += reloadAmmo;
         shootWeapon.canFire = true;
+        reloading = false;
         //TODO : Animation
         //weapon.animator. 
     }

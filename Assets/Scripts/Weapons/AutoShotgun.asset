@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20402c105484b7942bb8311db0abe157, type: 3}
   m_Name: AutoShotgun
   m_EditorClassIdentifier: 
-  fireMode: 0
+  fireMode: 1
   projectile: 0
   scoped: 0
-  range: 0
-  spread: 0
-  spreadScaling: 0
-  magazineSize: 0
+  range: 3
+  spread: 5
+  spreadScaling: 3
+  magazineSize: 20
   ammoInMagazine: 0
-  maxAmmo: 0
+  maxAmmo: 60
   reserveAmmo: 0
-  reloadTime: 0
-  ammoPerShot: 0
-  fireCooldown: 0
-  damagePerHit: 0
+  reloadTime: 0.6
+  ammoPerShot: 4
+  fireCooldown: 0.3508772
+  damagePerHit: 10
   animator: {fileID: 0}

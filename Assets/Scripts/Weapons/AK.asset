@@ -15,11 +15,11 @@ MonoBehaviour:
   fireMode: 1
   projectile: 0
   scoped: 1
-  range: 50
-  spread: 0.8
-  spreadScaling: 0.02
+  range: 1.09
+  spread: 2
+  spreadScaling: 1
   magazineSize: 30
-  ammoInMagazine: 30
+  ammoInMagazine: 29
   maxAmmo: 90
   reserveAmmo: 60
   reloadTime: 1

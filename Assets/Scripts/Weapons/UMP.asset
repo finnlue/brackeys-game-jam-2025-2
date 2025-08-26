@@ -15,15 +15,15 @@ MonoBehaviour:
   fireMode: 1
   projectile: 0
   scoped: 0
-  range: 25
-  spread: 0.6
-  spreadScaling: 0
+  range: 2
+  spread: 0.5
+  spreadScaling: 0.8
   magazineSize: 30
-  ammoInMagazine: 0
+  ammoInMagazine: 27
   maxAmmo: 150
-  reserveAmmo: 0
+  reserveAmmo: 150
   reloadTime: 0.7
   ammoPerShot: 1
-  fireCooldown: 0.05
+  fireCooldown: 0.08
   damagePerHit: 6
   animator: {fileID: 0}

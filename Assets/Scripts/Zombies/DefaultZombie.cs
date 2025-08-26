@@ -7,7 +7,7 @@ public class DefaultZombie : BaseEnemyLogic
         base.Start();
 
         health = 100;
-        speed = 0.8f;
+        speed = 1.2f;
 
         ApplyToAgent();
     }

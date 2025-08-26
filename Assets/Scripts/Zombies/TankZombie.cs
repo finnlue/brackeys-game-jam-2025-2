@@ -7,7 +7,7 @@ public class TankZombie : BaseEnemyLogic
         base.Start();
 
         health = 300;
-        speed = 0.3f;
+        speed = 0.6f;
 
         ApplyToAgent();
     }

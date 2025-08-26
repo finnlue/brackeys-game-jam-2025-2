@@ -7,7 +7,7 @@ public class FastEnemy : BaseEnemyLogic
         base.Start();
 
         health = 60;
-        speed = 1.5f;
+        speed = 1.8f;
 
         ApplyToAgent();
     }

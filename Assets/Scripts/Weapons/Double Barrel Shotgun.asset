@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20402c105484b7942bb8311db0abe157, type: 3}
-  m_Name: Deagle
+  m_Name: Double Barrel Shotgun
   m_EditorClassIdentifier: 
   fireMode: 0
   projectile: 0
   scoped: 0
-  range: 3
-  spread: 2
+  range: 2.48
+  spread: 10
   spreadScaling: 0
-  magazineSize: 7
-  ammoInMagazine: 7
-  maxAmmo: 35
-  reserveAmmo: 28
-  reloadTime: 1.5
-  ammoPerShot: 1
+  magazineSize: 8
+  ammoInMagazine: 8
+  maxAmmo: 32
+  reserveAmmo: 32
+  reloadTime: 0.8
+  ammoPerShot: 5
   fireCooldown: 0.5
-  damagePerHit: 40
-  animator: {fileID: 0}
+  damagePerHit: 15
+  model: {fileID: 4120409300777660783, guid: 016bdd57a6e902b4a91d6b8635009952, type: 3}

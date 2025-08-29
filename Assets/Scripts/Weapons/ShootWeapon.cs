@@ -5,6 +5,7 @@ public class ShootWeapon : MonoBehaviour
 {
     public LayerMask zombieLayer;
     public MovementController movementController;
+    private GunController gunController;
     public GameObject decal;
 
     [HideInInspector] public bool canFire = true;
@@ -13,6 +14,7 @@ public class ShootWeapon : MonoBehaviour
     protected void Start()
     {
         zombieLayer = LayerMask.GetMask("Zombie");
+        gunController =  GetComponent<GunController>();
     }
 
 
@@ -63,13 +65,13 @@ public class ShootWeapon : MonoBehaviour
     public void PullTrigger(WeaponBluePrint weapon, Vector3 origin, Vector3 direction, float spread)
     {
         int numberOfShots = Mathf.Min(weapon.ammoPerShot, weapon.ammoInMagazine);
-
+        gunController.currentAnimator.SetTrigger("Fire");
         for (int i = 0; i < numberOfShots; i++)
         {
             if (weapon.projectile)
                 Projectile(origin, direction);
             else
-                Hitscan(origin, direction,spread, weapon.range, weapon.damagePerHit);
+                Hitscan(origin, direction, spread, weapon.range, weapon.damagePerHit);
         }
         weapon.ammoInMagazine -= numberOfShots;
     }

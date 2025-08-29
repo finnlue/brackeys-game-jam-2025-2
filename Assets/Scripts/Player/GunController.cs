@@ -13,7 +13,11 @@ public class GunController : MonoBehaviour
     private int currentWeaponID = 0;
     public List<WeaponBluePrint>availableWeapons;
     public TestUI testUI;
+    public GameObject currentModel;
+    public GameObject gunPosition;
+    public Animator currentAnimator;
     public MovementController movementController;
+    private GameObject currentInstance;
 
     private Vector3 cameraPosition;
     private Vector3 forwardVector;
@@ -29,7 +33,9 @@ public class GunController : MonoBehaviour
         }
         shootWeapon = GetComponentInChildren<ShootWeapon>();
         currentWeapon = availableWeapons[currentWeaponID];
-
+        currentModel = currentWeapon.model;
+        currentInstance = Instantiate(currentModel, gunPosition.transform);
+        currentAnimator = currentInstance.GetComponentInChildren<Animator>();
         testUI.currentWeapon = currentWeapon;
      
     }
@@ -53,11 +59,13 @@ public class GunController : MonoBehaviour
 
     public IEnumerator Reload()
     {
-        if (currentWeapon.reserveAmmo <= 0)
+        if (currentWeapon.reserveAmmo <= 0 || currentWeapon.ammoInMagazine == currentWeapon.magazineSize)
         {
             Debug.Log("cant reload, no ammo left");
             yield break;
         }
+        currentAnimator.SetTrigger("Reload");
+        
         shootWeapon.canFire = false;
         reloading = true;
         yield return new WaitForSeconds(currentWeapon.reloadTime);
@@ -65,28 +73,36 @@ public class GunController : MonoBehaviour
         currentWeapon.reserveAmmo -= reloadAmmo;
         currentWeapon.ammoInMagazine += reloadAmmo;
         shootWeapon.canFire = true;
+        currentAnimator.ResetTrigger("Reload");
         reloading = false;
-        //TODO : Animation
-        //weapon.animator. 
+        }
+
+    public void SwitchWeapon()
+    {
+        StopFire();
+        Destroy(currentInstance);
+        currentWeapon = availableWeapons[currentWeaponID];
+        currentModel = currentWeapon.model;
+        currentInstance = Instantiate(currentModel, gunPosition.transform);
+        currentAnimator = currentInstance.GetComponentInChildren<Animator>();
+        testUI.currentWeapon = currentWeapon;
+
     }
 
     public void NextWeapon()
     {
-        StopFire();
         currentWeaponID += 1;
         if (currentWeaponID > availableWeapons.Count - 1)
             currentWeaponID = 0;
-        currentWeapon = availableWeapons[currentWeaponID];
-        testUI.currentWeapon = currentWeapon;
+
+        SwitchWeapon();
     }
     public void prevoiusWeapon()
     {
-        StopFire();
         currentWeaponID -= 1;
         if (currentWeaponID < 0)
             currentWeaponID = availableWeapons.Count - 1;
-        currentWeapon = availableWeapons[currentWeaponID];
-        testUI.currentWeapon = currentWeapon;
+        SwitchWeapon();
     }
 
     public void PickUpWeapon(WeaponBluePrint weapon)

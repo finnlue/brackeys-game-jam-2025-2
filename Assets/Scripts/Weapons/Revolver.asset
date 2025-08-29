@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20402c105484b7942bb8311db0abe157, type: 3}
-  m_Name: UMP
+  m_Name: Revolver
   m_EditorClassIdentifier: 
-  fireMode: 1
+  fireMode: 0
   projectile: 0
   scoped: 0
-  range: 2
-  spread: 0.5
-  spreadScaling: 0.8
-  magazineSize: 30
-  ammoInMagazine: 27
-  maxAmmo: 150
-  reserveAmmo: 150
-  reloadTime: 0.7
+  range: 3
+  spread: 2
+  spreadScaling: 0
+  magazineSize: 7
+  ammoInMagazine: 7
+  maxAmmo: 35
+  reserveAmmo: 35
+  reloadTime: 1.5
   ammoPerShot: 1
-  fireCooldown: 0.08
-  damagePerHit: 6
-  animator: {fileID: 0}
+  fireCooldown: 0.5
+  damagePerHit: 40
+  model: {fileID: 347616600045671505, guid: 0c200f62cba9d39459cb5c789f9c3ce9, type: 3}

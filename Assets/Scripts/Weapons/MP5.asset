@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20402c105484b7942bb8311db0abe157, type: 3}
-  m_Name: AK
+  m_Name: MP5
   m_EditorClassIdentifier: 
   fireMode: 1
   projectile: 0
-  scoped: 1
-  range: 1.09
-  spread: 2
-  spreadScaling: 1
+  scoped: 0
+  range: 2
+  spread: 0.5
+  spreadScaling: 0.8
   magazineSize: 30
-  ammoInMagazine: 29
-  maxAmmo: 90
-  reserveAmmo: 60
-  reloadTime: 1
+  ammoInMagazine: 30
+  maxAmmo: 150
+  reserveAmmo: 150
+  reloadTime: 0.7
   ammoPerShot: 1
-  fireCooldown: 0.1
-  damagePerHit: 30
-  animator: {fileID: 0}
+  fireCooldown: 0.08
+  damagePerHit: 6
+  model: {fileID: 6369419497792971178, guid: f3b9aae9ab967e543977d74b6664bbf8, type: 3}

@@ -41,7 +41,7 @@ public class BaseEnemyLogic : MonoBehaviour
             navMeshAgent.SetDestination(player.position);
         }
 
-        Debug.Log(navMeshAgent.velocity.magnitude);
+        //Debug.Log(navMeshAgent.velocity.magnitude);
 
         if(navMeshAgent.velocity.magnitude > 0.1f)
         {

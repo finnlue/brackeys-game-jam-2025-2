@@ -19,11 +19,11 @@ MonoBehaviour:
   spread: 0.1
   spreadScaling: 0
   magazineSize: 5
-  ammoInMagazine: 0
+  ammoInMagazine: 5
   maxAmmo: 10
-  reserveAmmo: 0
+  reserveAmmo: 10
   reloadTime: 2
   ammoPerShot: 1
   fireCooldown: 2
   damagePerHit: 60
-  animator: {fileID: 0}
+  model: {fileID: 6159180651377870309, guid: c5cdb38d3b6c3d942a65f09f2bf7c28e, type: 3}

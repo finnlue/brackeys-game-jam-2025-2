@@ -11,8 +11,8 @@ public class WeaponBluePrint : ScriptableObject
         Automatic
     }
 
-    public FireModes fireMode; 
-    public bool projectile;  
+    public FireModes fireMode;
+    public bool projectile;
     public bool scoped;
 
     public float range;
@@ -30,7 +30,6 @@ public class WeaponBluePrint : ScriptableObject
     public float fireCooldown;
     public int damagePerHit;
 
-    public Animator animator;
-
-
+    public GameObject model;
+    
 }

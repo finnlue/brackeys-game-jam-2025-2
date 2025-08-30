@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -7,9 +8,9 @@ public class BaseEnemyLogic : MonoBehaviour
 {
     float distance;
     public Transform player;
-    public float range = 20f;
+    public float range = 100f;
     public float minDistance = 0.5f;
-    public NavMeshAgent navMeshAgent;
+    private NavMeshAgent navMeshAgent;
     SpriteRenderer sprite;
     Animator anim;
 
@@ -27,6 +28,24 @@ public class BaseEnemyLogic : MonoBehaviour
         anim = GetComponent<Animator>();
 
         navMeshAgent.stoppingDistance = minDistance;
+        StartCoroutine(UpdatePathRoutine());
+    }
+
+    private IEnumerator UpdatePathRoutine()
+    {
+        while (true)
+        {
+            if (Vector3.Distance(transform.position, player.position) < range)
+            {
+                float swarmRadius = Mathf.Clamp(Vector3.Distance(transform.position, player.position) * 0.3f, 0.5f, 2f);
+                Vector2 offset = Random.insideUnitCircle * swarmRadius;
+                Vector3 currentTarget = player.position + new Vector3(offset.x, 0, offset.y);
+
+                navMeshAgent.SetDestination(currentTarget);
+            }
+
+            yield return new WaitForSeconds(Random.Range(0.5f, 1.5f));
+        }
     }
 
     private void Update()
@@ -34,19 +53,10 @@ public class BaseEnemyLogic : MonoBehaviour
         transform.LookAt(player);
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
-        distance = Vector3.Distance(this.transform.position, player.position);
-
-        if (distance < range)
-        {
-            navMeshAgent.SetDestination(player.position);
-        }
-
-        //Debug.Log(navMeshAgent.velocity.magnitude);
-
-        if(navMeshAgent.velocity.magnitude > 0.1f)
+        if (navMeshAgent.velocity.magnitude > 0.1f)
         {
             anim.SetInteger("Mode", 1);
-        } 
+        }
         else
         {
             anim.SetInteger("Mode", 0);

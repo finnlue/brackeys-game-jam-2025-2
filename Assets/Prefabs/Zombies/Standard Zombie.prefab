@@ -15,12 +15,6 @@ GameObject:
   - component: {fileID: 3926796732383624812}
   - component: {fileID: 7636803505713135935}
   - component: {fileID: 8180005436447569752}
-  - component: {fileID: 294152699720202031}
-  - component: {fileID: 5375275643288482104}
-  - component: {fileID: 8426014932971947085}
-  - component: {fileID: 4480851278940360743}
-  - component: {fileID: 5440200393408502793}
-  - component: {fileID: 4129868817812396740}
   m_Layer: 7
   m_Name: Standard Zombie
   m_TagString: Zombie
@@ -38,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.353, z: 1.144}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,7 +101,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1504392229314014611}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.2
+  m_Radius: 0.1
   m_Speed: 0.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -119,7 +113,7 @@ NavMeshAgent:
   m_Height: 0.45
   m_BaseOffset: 0.34
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
+  m_ObstacleAvoidanceType: 3
 --- !u!114 &835992950001334817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  range: 2
+  range: 100
   minDistance: 0.5
   navMeshAgent: {fileID: 0}
   health: 0
